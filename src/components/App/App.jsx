@@ -46,17 +46,24 @@ export default class App extends Component {
     this.setState({ loading: false });
   }
 
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
-  }
+  // componentDidMount() {
+  //   window.addEventListener('keydown', this.handleKeyDown);
+  //   console.log('componentDidMount');
+  // }
 
-  handleKeyDown = e => {
-    if (e.code === 'Escape') {
-      console.log('hello');
-      this.setState({
-        largeImageURL: '',
-      });
-    }
+  // handleKeyDown = e => {
+  //   if (e.code === 'Escape') {
+  //     this.setState({
+  //       largeImageURL: '',
+  //     });
+  //     console.log('close');
+  //   }
+  // };
+
+  closeModal = () => {
+    this.setState({
+      largeImageURL: '',
+    });
   };
 
   hasMoreImages = () => {
@@ -113,6 +120,7 @@ export default class App extends Component {
           <Modal
             largeImageURL={this.state.largeImageURL}
             handleKeyDown={this.handleKeyDown}
+            closeModal={this.closeModal}
           />
         )}
         {images.length !== 0 && this.hasMoreImages() && (
@@ -123,5 +131,3 @@ export default class App extends Component {
     );
   }
 }
-
-
